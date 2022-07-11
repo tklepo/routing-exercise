@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from 'shared';
-import { Home, Info, Login } from 'views';
+import { Blog, BlogDetails, Home, Info, Login } from 'views';
 
 export const App: React.FC = () => {
   const [isLoggedIn, setIsLogggedIn] = useState<boolean>(false);
@@ -23,7 +23,15 @@ export const App: React.FC = () => {
         >
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/blog" element={<Login />} />
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate to="/" replace /> : <Login />}
+          />
+          <Route
+            path="/blog"
+            element={isLoggedIn ? <Blog /> : <Navigate to="/login" replace />}
+          />
+          <Route path="/blog/:id" element={<BlogDetails />} />
         </Route>
         <Route />
       </Routes>

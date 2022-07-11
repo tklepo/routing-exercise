@@ -1,11 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { BlogPost, blogPosts } from 'data';
 import { BlogPostCard } from 'modules';
+import { useNavigate } from 'react-router-dom';
 import { wrapper } from './Blog.styles';
 
 export const Blog: React.FC = () => {
+  const navigate = useNavigate();
+
   function onReadBlog(blogPost: BlogPost) {
-    console.log('TODO: go to details page', blogPost);
+    navigate('/blog/' + blogPost.id, {
+      state: {
+        id: blogPost.id,
+        title: blogPost.title,
+        description: blogPost.description,
+      },
+    });
   }
 
   return (
