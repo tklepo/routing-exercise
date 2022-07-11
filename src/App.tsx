@@ -17,7 +17,7 @@ export const App: React.FC = () => {
           path="/"
           element={
             <Layout onLogin={() => onLogin()}>
-              <p>TODO: Add react router</p>
+              <p>Router exercise</p>
             </Layout>
           }
         >
